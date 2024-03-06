@@ -5,7 +5,35 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <header>
+    </header>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <div class="table-data">
+      <h2>Voici les utilisateurs en base de données</h2>
+      <table border="1">
+        <tr>
+          <th>S.N</th>
+          <th>Email</th>
+          <th>Password</th>
+          
+        </tr>
+        <% if (userData.length !== 0) { %>
+          <% userData.forEach(function(data, index) { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= data.email %></td>
+              <td><%= data.password %></td>
+            </tr>
+          <% }); %>
+        <% } else { %>
+          <tr>
+            <td colspan="7">No Data Found</td>
+          </tr>
+        <% } %>
+      </table>
+    </div>
+
   </body>
 </html>

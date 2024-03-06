@@ -5,7 +5,14 @@ const connection = require('../database.js');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('users', { title: 'Users' });
+  const sql = "SELECT * FROM users";
+  connection.query(sql, (err, data) => {
+    if (err) throw err;
+    res.render('users', { title: 'Users', 
+                          userData : data,
+                          });
+
+  })
 });
 
 module.exports = router;

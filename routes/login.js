@@ -14,27 +14,6 @@ router.get('/', function(req, res, next) {
 });
 
 
-// router.post('/', function(request, response) {
-// 	let email = request.body.email;
-// 	let password = request.body.password;
-// 	if (email && password) {
-// 		connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
-// 			if (error) throw error;
-// 			if (results.length > 0) {
-// 				// request.session.loggedin = true;
-// 				// request.session.email = email;
-// 				response.redirect('/home');
-// 			} else {
-// 				response.send('Email ou mot de passe incorrect !');
-// 			}			
-// 			response.end();
-// 		});
-// 	} else {
-// 		response.send('Veuillez entrer vos informations de connexion !');
-// 		response.end();
-// 	}
-// });
-
 router.post('/', (req, res) => {
     const { email, password } = req.body;
   
@@ -61,7 +40,11 @@ router.post('/', (req, res) => {
   
                     // on renvoie sur /home
                     // res.redirect('/');
-                    res.render('home', { logged: req.session.email, title: 'Home'});
+                    res.render('home', { 
+                                          logged: req.session.email, 
+                                          title: 'Home', 
+                                           
+                                        });
 
                   //si result false, on renvoe vers le formulaire, avec un message d'erreur  
                   } else {
